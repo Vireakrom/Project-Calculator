@@ -56,7 +56,8 @@ for (const ope of opes) {
       newOp = ope.textContent;
     }
     if (finalNumber == "") finalNumber = currentNumber;
-    else finalNumber = operate(operator, finalNumber, currentNumber);
+    else if (currentNumber == "") {
+    } else finalNumber = operate(operator, finalNumber, currentNumber);
     display.textContent = finalNumber;
     currentNumber = "";
   });
