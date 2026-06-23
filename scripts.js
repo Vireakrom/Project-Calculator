@@ -27,7 +27,8 @@ function operate(operator, num1, num2) {
   } else if (operator == "x") {
     result = multiply(num1, num2);
   } else if (operator == "/") {
-    result = divide(num1, num2);
+    if (num2 == 0) {
+    } else result = divide(num1, num2);
   }
   return result;
 }
@@ -58,16 +59,19 @@ for (const ope of opes) {
     if (finalNumber == "") finalNumber = currentNumber;
     else if (currentNumber == "") {
     } else finalNumber = operate(operator, finalNumber, currentNumber);
-    display.textContent = finalNumber;
+
+    display.textContent = Math.round(finalNumber * 100000) / 100000;
     currentNumber = "";
   });
 }
 
 let res = document.querySelector(".res");
 res.addEventListener("click", () => {
-  let result = operate(newOp, finalNumber, currentNumber);
-  console.log(result);
-  display.textContent = result;
+  if (currentNumber != "" && finalNumber != "" && newOp != "") {
+    let result = operate(newOp, finalNumber, currentNumber);
+
+    display.textContent = Math.round(result * 100000) / 100000;
+  }
 });
 
 let clear = document.querySelector(".clear");
